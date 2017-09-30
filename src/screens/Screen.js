@@ -18,7 +18,7 @@ export default class Screen extends React.Component {
       </div>
       <div className="header">
         {this.props.header ? this.props.header : (
-          <div class="header__logo">
+          <div className="header__logo">
             <a href="https://www.psbank.ru/" target="_blank">
               <img src={logo} />
             </a>
