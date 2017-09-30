@@ -4,6 +4,7 @@ import './App.sass';
 import LoginMain from './screens/LoginMain';
 import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
+import MainMenu from './screens/MainMenu';
 
 class App extends Component {
   render() {
@@ -11,7 +12,8 @@ class App extends Component {
       <div className="App">
         {/*<LoginMain/>*/}
         {/*<SignIn />*/}
-        <SignUp />
+        {/*<SignUp />*/}
+        <MainMenu/>
       </div>
     );
   }

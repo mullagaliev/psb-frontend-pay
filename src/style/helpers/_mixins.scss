@@ -5,7 +5,7 @@
     @media (min-width: $desktop) { @content ; }
 }
 @else if $point == laptop {
-  @media (min-width: $laptop) { @content ; }
+  @media (min-width: $laptop) and (max-width: $desktop) { @content ; }
 }
 @else if $point == mobile {
   @media (max-width: $laptop)  { @content ; }
@@ -13,17 +13,17 @@
 }
 
 /* alias for breakpoint */
-@mixin sd(){
+@mixin md(){
   @include breakpoint(desktop){
     @content;
 }
 }
-@mixin sl(){
+@mixin sm(){
   @include breakpoint(laptop){
     @content;
 }
 }
-@mixin sm(){
+@mixin xs(){
   @include breakpoint(mobile){
     @content;
 }
@@ -35,4 +35,11 @@
     display: table;
     clear: both;
 }
+}
+
+@mixin align-center-wh(){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
