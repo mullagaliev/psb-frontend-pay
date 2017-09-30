@@ -80,7 +80,6 @@ function Step2() {
 const methodConcludingOptions = [
   { key: 1, text: 'В офисе', value: 1 },
   { key: 2, text: 'Курьером', value: 2 },
-  { key: 3, text: 'Почтой', value: 3 },
 ];
 
 const AddressOptions = [
