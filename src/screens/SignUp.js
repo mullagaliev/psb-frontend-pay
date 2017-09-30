@@ -3,13 +3,13 @@ import './Screen.sass';
 import { Form, Segment, Button, Dropdown, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
 
-// TODO добавить переход по шагам
+// TODO Отправку формы
 class Step1 extends Component{
   constructor(props){
     super(props);
   }
   render(){
-    return <Form onSubmit={()=>this.props.onNext(2)}>
+    return <Form>
       <Segment stacked>
         <Divider horizontal className="orange-color">Организация</Divider>
         <Form.Field>
@@ -53,7 +53,11 @@ class Step1 extends Component{
                  onChange={(e)=>{this.props.onUpdateField(e)} }
           />
         </Form.Field>
-        <Button type="submit" fluid color={'blue'}>Далее</Button>
+        <Button type="button"
+                fluid
+                color={'orange'}
+                onClick={()=>this.props.onNext(2)}
+        >Далее</Button>
       </Segment>
     </Form>;
   }
@@ -64,7 +68,7 @@ class Step2 extends Component{
     super(props);
   }
   render() {
-    return <Form onSubmit={()=>this.props.onNext(3)}>
+    return <Form>
         <Segment stacked>
         <Divider horizontal className="orange-color">Аккаунт</Divider>
         <Form.Field>
@@ -93,7 +97,22 @@ class Step2 extends Component{
                  onChange={(e)=>{this.props.onUpdateField(e)} }
           />
         </Form.Field>
-        <Button type="submit" fluid color={'blue'}>Далее</Button>
+        <Form.Field>
+          <Button type="button"
+                  color={'blue'}
+                  fluid
+                  onClick={()=>this.props.onNext(1)}>
+            Назад
+          </Button>
+        </Form.Field>
+        <Form.Field>
+          <Button type="button"
+                  color={'orange'}
+                  fluid
+                  onClick={()=>this.props.onNext(3)}>
+            Далее
+          </Button>
+        </Form.Field>
       </Segment>
     </Form>;
   }
@@ -116,7 +135,7 @@ class Step3 extends Component{
     super(props);
   }
   render(){
-    return <Form onSubmit={()=>this.props.onNext(3)}>
+    return <Form>
         <Segment stacked>
         <Divider horizontal className="orange-color">Договор</Divider>
         <Form.Field>
@@ -161,7 +180,21 @@ class Step3 extends Component{
             />
           </Form.Field>
         ) : null }
-        <Button type="submit" fluid color={'orange'}>Отправить заявку</Button>
+        <Form.Field>
+          <Button type="button"
+                  color={'blue'}
+                  fluid
+                  onClick={()=>this.props.onBack(2)}>
+            Назад
+          </Button>
+        </Form.Field>
+        <Form.Field>
+          <Button type="button"
+                  fluid
+                  color={'orange'}
+                  onClick={()=>this.props.onNext(3)}
+          >Отправить заявку</Button>
+        </Form.Field>
       </Segment>
     </Form>;
   }
@@ -251,6 +284,7 @@ class SignUp extends Component {
           methodConcluding = {this.state.methodConcluding}
           officeId = {this.state.officeId}
           onUpdateField = {this.UpdateField.bind(this)}
+          onBack = {this.Next.bind(this)}
           onNext = {this.onSubmit.bind(this)}
         />;
       default:
