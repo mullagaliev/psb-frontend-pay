@@ -27,7 +27,7 @@ export default class Screen extends React.Component {
           </div>
         )}
       </div>
-      <div className="content">
+      <div className="b-content">
         { this.props.content }
       </div>
       <div className="footer" >

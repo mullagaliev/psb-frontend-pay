@@ -5,6 +5,7 @@ import LoginMain from './screens/LoginMain';
 import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
 import MainMenu from './screens/MainMenu';
+import Invoice from './screens/Invoice';
 
 class App extends Component {
   render() {
@@ -13,7 +14,8 @@ class App extends Component {
         {/*<LoginMain/>*/}
         {/*<SignIn />*/}
         {/*<SignUp />*/}
-        <MainMenu/>
+        {/*<MainMenu/>*/}
+        <Invoice/>
       </div>
     );
   }
