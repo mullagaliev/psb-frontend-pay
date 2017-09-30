@@ -2,6 +2,7 @@ import React from 'react';
 import './Screen.sass';
 import logo from '../logo-psb.svg';
 import logoWhite from '../logo-psb-white.png';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 
 export default class Screen extends React.Component {
   static defaultProps = {
@@ -30,19 +31,28 @@ export default class Screen extends React.Component {
         { this.props.content }
       </div>
       <div className="footer" >
-        {/*{this.props.footer ? (this.props.footer) : (*/}
-            {/*<div className="copyright">*/}
-              {/*<span className="copyright__icon">*/}
-                {/*©*/}
-              {/*</span>*/}
-              {/*<span className="copyright__team">*/}
-                {/*InnovationTM*/}
-              {/*</span>*/}
-              {/*<span className="copyright__year">*/}
-                {/*2017*/}
-              {/*</span>*/}
-            {/*</div>*/}
-        {/*) }*/}
+        {this.props.footer ? (this.props.footer) : (
+          <div className="menu-bottom">
+            <Menu compact widths={4}>
+              <Menu.Item as='a' className="active">
+                <Icon name='block layout' size="large" color={'orange'}/>
+                <span>Главная</span>
+              </Menu.Item>
+              <Menu.Item as='a'>
+                <Icon name='history' size="large"/>
+                <span>История</span>
+              </Menu.Item>
+              <Menu.Item as='a'>
+                <Icon name='comments' size="large"/>
+                <span>Помощь</span>
+              </Menu.Item>
+              <Menu.Item as='a'>
+                <Icon name='setting' size="large"/>
+                <span>Настройки</span>
+              </Menu.Item>
+            </Menu>
+          </div>
+        ) }
       </div>
     </div>;
   }

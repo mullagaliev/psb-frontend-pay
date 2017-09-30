@@ -22,12 +22,11 @@
         height: 56px
   .content
     position: relative
-    height: calc(100% - 76px - 70px )
+    height: calc(100% - 76px - 55px )
     //padding: ($header-h + $padding-h) 0 56px
     margin: ($header-h + 2*$padding-h) 0 $footer-h
     //overflow-y: scroll
   .footer
-    background-color: white
     text-align: center
     color: white
     position: absolute
@@ -35,6 +34,15 @@
     left: 0
     right: 0
     height: $footer-h
+
+.menu-bottom
+  span, .icon
+    font-size: 11px !important
+  .icon
+    font-size: 13px !important
+  .active
+    border-top: 2px solid $color-accent
+
 
 .main-menu
   position: absolute
