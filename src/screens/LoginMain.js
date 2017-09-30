@@ -14,6 +14,7 @@ class LoginMain extends Component {
           <Button secondary fluid>Создать аккаунт</Button>
         </Segment>
       </div>}
+      footer={<div></div>}
     />;
   }
 }

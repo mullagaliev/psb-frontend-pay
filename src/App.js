@@ -13,9 +13,9 @@ class App extends Component {
       <div className="App">
         {/*<LoginMain/>*/}
         {/*<SignIn />*/}
-        {/*<SignUp />*/}
+        <SignUp />
         {/*<MainMenu/>*/}
-        <Invoice/>
+        {/*<Invoice/>*/}
       </div>
     );
   }

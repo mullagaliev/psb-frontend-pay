@@ -46,6 +46,7 @@ class SignIn extends Component {
           </Segment>
         </Form>
       </div>}
+      footer={<div></div>}
     />;
   }
 }
