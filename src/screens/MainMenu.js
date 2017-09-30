@@ -20,7 +20,7 @@ class MainMenu extends Component {
                     </Icon.Group>
                   </div>
                   <div className="main-menu-item__title">
-                    Добавить терминал
+                    Создать терминал
                   </div>
                 </div>
               </Segment>

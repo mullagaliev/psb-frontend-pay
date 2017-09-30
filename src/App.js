@@ -6,6 +6,8 @@ import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
 import MainMenu from './screens/MainMenu';
 import Invoice from './screens/Invoice';
+import { AddTerminal, TerminalsList } from './screens/Terminals';
+import { Settings } from './screens/Settings';
 
 class App extends Component {
   render() {
@@ -13,8 +15,11 @@ class App extends Component {
       <div className="App">
         {/*<LoginMain/>*/}
         {/*<SignIn />*/}
-        <SignUp />
+        {/*<SignUp />*/}
         {/*<MainMenu/>*/}
+        {/*<Settings/>*/}
+        {/*<TerminalsList/>*/}
+        <AddTerminal/>
         {/*<Invoice/>*/}
       </div>
     );
