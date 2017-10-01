@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
+
 
 class SignIn extends Component {
   constructor(props){
@@ -42,11 +44,15 @@ class SignIn extends Component {
                      onChange={this.onChangePassword.bind(this)}
               />
             </Form.Field>
-            <Button type="submit" fluid color={'orange'}>Вход</Button>
+
+            <Link to={`/main`}>
+              <Button type="button" fluid color={'orange'}>Вход</Button>
+            </Link>
+            {/*<Button type="submit" fluid color={'orange'}>Вход</Button>*/}
           </Segment>
         </Form>
       </div>}
-      footer={<div></div>}
+      footer={false}
     />;
   }
 }

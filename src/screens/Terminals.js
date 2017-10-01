@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Divider, Loader, Dimmer, Icon, Grid, Input, Label } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
+
 
 class AddTerminal extends Component {
   constructor(props){
@@ -22,7 +24,7 @@ class AddTerminal extends Component {
                 <Form.Field>
                   <label>
                     <Icon name='mobile' color='orange'/>
-                    Логин терминал
+                    Логин терминала
                   </label>
                   <input placeholder='Логин терминала'
                     // value={this.state.password}
@@ -125,13 +127,15 @@ class TerminalsList extends Component {
             {terminalsList}
             <br/>
             <div>
-              <Button type="button"
-                      color={'orange'}
-                      fluid
-                // onClick={()=>this.props.onNext(1)}
-              >
-                <Icon name="plus square outline"/>Добавить терминал
-              </Button>
+              <Link to={`/terminals/create`}>
+                <Button type="button"
+                        color={'orange'}
+                        fluid
+                  // onClick={()=>this.props.onNext(1)}
+                >
+                  <Icon name="plus square outline"/>Добавить терминал
+                </Button>
+              </Link>
             </div>
           </div>
         }

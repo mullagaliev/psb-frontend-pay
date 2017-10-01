@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Dropdown, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
+
 
 // TODO Отправку формы
 class Step1 extends Component{
@@ -9,9 +11,9 @@ class Step1 extends Component{
     super(props);
   }
   render(){
-    return <Form>
+    return <Form className='form-sign-up'>
       <Segment stacked>
-        <Divider horizontal className="orange-color">Организация</Divider>
+        <Divider horizontal className="orange-color">Регистрация организации</Divider>
         <Form.Field>
           <label>ИНН</label>
           <input placeholder='0000000000'
@@ -20,7 +22,7 @@ class Step1 extends Component{
                  onChange={(e)=>{this.props.onUpdateField(e)} }
           />
         </Form.Field>
-        <Divider horizontal className="orange-color">Контакты</Divider>
+        {/*<Divider horizontal className="orange-color">Контакты</Divider>*/}
         <Form.Field>
           <label>Имя</label>
           <input placeholder='Иван'
@@ -192,8 +194,29 @@ class Step3 extends Component{
           <Button type="button"
                   fluid
                   color={'orange'}
-                  onClick={()=>this.props.onNext(3)}
+                  onClick={()=>this.props.onNext(4)}
           >Отправить заявку</Button>
+        </Form.Field>
+      </Segment>
+    </Form>;
+  }
+}
+
+class Step4 extends Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return <Form className='align-center-wh'>
+      <Segment stacked>
+        <Divider horizontal className="orange-color">Аккаунт успешно создан</Divider>
+        <Form.Field>
+          <Link to={`/terminals/create`}>
+            <Button type="button"
+                    fluid
+                    color={'orange'}
+            >Перейти к созданию первого терминала</Button>
+          </Link>
         </Form.Field>
       </Segment>
     </Form>;
@@ -285,8 +308,11 @@ class SignUp extends Component {
           officeId = {this.state.officeId}
           onUpdateField = {this.UpdateField.bind(this)}
           onBack = {this.Next.bind(this)}
-          onNext = {this.onSubmit.bind(this)}
+          onNext = {this.Next.bind(this)}
+          onSubmit = {this.onSubmit.bind(this)}
         />;
+      case 4:
+        return <Step4/>;
       default:
         return null;
     }
@@ -297,10 +323,8 @@ class SignUp extends Component {
   render() {
     return <Screen
       active={ this.props.active }
-      content={<div className="form-sign-up">
-        {this.renderStep(this.state.step)}
-      </div>}
-      footer={<div></div>}
+      content={this.renderStep(this.state.step)}
+      footer={false}
     />;
   }
 }

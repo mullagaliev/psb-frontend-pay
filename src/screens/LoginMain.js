@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Segment, Button, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
 
 class LoginMain extends Component {
   render() {
@@ -9,12 +10,15 @@ class LoginMain extends Component {
       active={ this.props.active }
       content={<div className="form-login">
         <Segment padded>
-          <Button primary fluid>Вход</Button>
+          <Link to={`/login`}>
+            <Button fluid color={'orange'}>Вход</Button>
+          </Link>
           <Divider horizontal>или</Divider>
-          <Button secondary fluid>Создать аккаунт</Button>
+          <Link to={`/reg`}>
+            <Button fluid color={'blue'}>Создать аккаунт</Button>
+          </Link>
         </Segment>
       </div>}
-      footer={<div></div>}
     />;
   }
 }

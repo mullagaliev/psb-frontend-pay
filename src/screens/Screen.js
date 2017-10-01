@@ -3,6 +3,7 @@ import './Screen.sass';
 import logo from '../logo-psb.svg';
 import logoWhite from '../logo-psb-white.png';
 import { Menu, Button, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class Screen extends React.Component {
   static defaultProps = {
@@ -21,9 +22,9 @@ export default class Screen extends React.Component {
       <div className="header">
         {this.props.header ? this.props.header : (
           <div className="header__logo">
-            <a href="https://www.psbank.ru/" target="_blank">
+            <Link to={`/welcome`}>
               <img src={logoWhite} />
-            </a>
+            </Link>
           </div>
         )}
       </div>
@@ -31,28 +32,40 @@ export default class Screen extends React.Component {
         { this.props.content }
       </div>
       <div className="footer" >
-        {this.props.footer ? (this.props.footer) : (
+        {this.props.footer !== null ? ( !this.props.footer ? <div>
+          <Link to={`/welcome`}>
+            <Button circular icon='arrow left' />
+          </Link>
+        </div> : (
           <div className="menu-bottom">
             <Menu compact widths={4}>
-              <Menu.Item as='a' className="active">
-                <Icon name='block layout' size="large" color={'orange'}/>
-                <span>Главная</span>
+              <Menu.Item className="active">
+                <Link to={`/main`}>
+                  <Icon name='block layout' size="large" color={'orange'}/>
+                  <span>Главная</span>
+                </Link>
               </Menu.Item>
-              <Menu.Item as='a'>
-                <Icon name='history' size="large"/>
-                <span>История</span>
+              <Menu.Item>
+                {/*<Link to={`/main`}>*/}
+                  <Icon name='history' size="large"/>
+                  <span>История</span>
+                {/*</Link>*/}
               </Menu.Item>
-              <Menu.Item as='a'>
-                <Icon name='comments' size="large"/>
-                <span>Помощь</span>
+              <Menu.Item >
+                {/*<Link to={`/main`}>*/}
+                  <Icon name='comments' size="large"/>
+                  <span>Помощь</span>
+                {/*</Link>*/}
               </Menu.Item>
-              <Menu.Item as='a'>
-                <Icon name='setting' size="large"/>
-                <span>Настройки</span>
+              <Menu.Item>
+                <Link to={`/settings`}>
+                  <Icon name='setting' size="large"/>
+                  <span>Настройки</span>
+                </Link>
               </Menu.Item>
             </Menu>
-          </div>
-        ) }
+          </div>)) : null
+        }
       </div>
     </div>;
   }

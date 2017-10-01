@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
 
 class Settings extends Component {
   constructor(props){
@@ -30,11 +31,13 @@ class Settings extends Component {
                 onClick={()=>alert('Пока мы в разработке')}
         >Смена пароля</Button>
         <br/>
-        <Button type="button"
-                fluid
-                color={'red'}
-                onClick={this.onExit.bind(this)}
-        >Выход</Button>
+        <Link to={`/`}>
+          <Button type="button"
+                  fluid
+                  color={'red'}
+                  // onClick={this.onExit.bind(this)}
+          >Выход</Button>
+        </Link>
       </div>}
     />;
   }

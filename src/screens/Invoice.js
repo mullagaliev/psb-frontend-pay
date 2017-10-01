@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Divider, Loader, Dimmer, Icon, Grid, Input, Label } from 'semantic-ui-react';
 import Screen from './Screen';
+import { Link } from 'react-router-dom';
 
 const STEPS = {
   BEGIN: 'begin',
@@ -35,7 +36,7 @@ class Invoice extends Component {
         setTimeout(() => {
           this.setState({ step: STEPS.WAIT});
           setTimeout(() => {
-            this.onNfcReading(); // TODO remove it
+             this.onNfcReading(); // TODO remove it
           }, 2000);
         }, 2000);
       });
@@ -45,6 +46,23 @@ class Invoice extends Component {
     }
   }
   onNfcReading(cardNumber = '0000 0000 0000 0000', dateEnd = '30.09.2017', cardType='Master card'){
+    $.post({
+      type: "POST",
+      url: '/api/transfer',
+      data: {
+        "from": "5321 3002 8165 7160",
+        "to": "5321 3002 4046 2957",
+        "cvv": "182",
+        "cardDate": "07/22",
+        "sum": "10"
+      },
+      dataType: "json",
+      statusCode:{
+        200: function(){
+          console.log(1)
+        }
+      }
+    });
     let clientInfo = {
       cardNumber: cardNumber,
       dateEnd: dateEnd,
@@ -99,14 +117,18 @@ class Invoice extends Component {
               <Form.Field>
                 <label>Поднесите устройство для оплаты </label>
               </Form.Field>
+              <Divider horizontal className="orange-color"> { this.state.total } ₽</Divider>
             </Segment>
           ) : null
         }
         {
           this.state.step === STEPS.SUCCESS ? (
             <Segment stacked className={'center aligned'}>
+              <Divider horizontal>Оплата успешно завершена!</Divider>
               <Form.Field>
-                <label>Оплата завершена успешно!</label>
+                <Link to={`/main`}>
+                  <Button fluid color={'orange'}>На главную</Button>
+                </Link>
               </Form.Field>
             </Segment>
           ) : null
@@ -121,6 +143,7 @@ class Invoice extends Component {
           ) : null
         }
       </div>}
+      footer={true}
     />;
   }
 }
