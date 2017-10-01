@@ -22,7 +22,7 @@ class Invoice extends Component {
       payload: {
         sum: '1000',
         to: "5321 3002 4046 2957",
-        token: "7081879F6C0200019F62060000000700009F630600000078F0009F640104563442353434333331393530303835303936395E202F5E323030363232313030303030303030303030303030303030303030303030309F650200E09F66020F1E9F6701049F6B135443319500850969D20062210000000000000F9F690F9F6A049F7E019F02065F2A029F1A029000"
+        token: ""
       }
     };
   }
@@ -50,8 +50,11 @@ class Invoice extends Component {
       alert('Ошибка ввода суммы');
     }
   }
-  onNfcReading(payload){
+  onNfcReading(token){
+    let payload = Object.assign({}, this.state.payload);
     this.setState({ step: STEPS.LOADING},() => {
+      payload.token = token;
+      payload.sum = this.state.total;
       // params
       let data = new FormData();
       Object.keys(payload).map(function(objectKey, index) {

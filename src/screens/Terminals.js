@@ -84,6 +84,7 @@ class AddTerminal extends Component {
                       <input placeholder='*****'
                              value={this.state.password}
                              name="password"
+                             type="password"
                              onChange={this.UpdateField.bind(this)}
                       />
                     </Form.Field>
@@ -118,6 +119,7 @@ class AddTerminal extends Component {
             }
           </div>
       </div>}
+      footer={true}
     />;
   }
 }
