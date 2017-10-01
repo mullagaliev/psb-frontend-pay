@@ -4,56 +4,119 @@ import { Form, Segment, Button, Divider, Loader, Dimmer, Icon, Grid, Input, Labe
 import Screen from './Screen';
 import { Link } from 'react-router-dom';
 
+const STEPS = {
+  BEGIN: 'begin',
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  ERROR: 'error',
+};
 
 class AddTerminal extends Component {
   constructor(props){
     super(props);
     this.state = {
+      login: '',
+      password: '',
+      step: STEPS.LOADING
     };
+  }
+  onSubmit(e){
+    e.preventDefault();
+    console.log(e);
+    this.setState({ step: STEPS.LOADING}, () => {
+      // params
+      let data = new FormData();
+      fetch("http://192.168.43.88:8080/api/terminal/add", {method: "POST", body: data})
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            this.setState({step: STEPS.SUCCESS});
+          }
+          else {
+            this.setState({step: STEPS.ERROR});
+          }
+        })
+        .catch((message) => {
+          console.log(message);
+          this.setState({step: STEPS.SUCCESS_FAKE});
+        });
+    });
+  }
+  UpdateField(e){
+    let name = e.target.name;
+    let val = e.target.value;
+    console.log(name, val);
+    console.log(this.state);
+    try{
+      this.setState({[`${name}`]: val});
+    }
+    catch(e){
+      console.log(e);
+    }
   }
   render() {
     return <Screen
-      active={ this.props.active }
+      active={ this.state.step === STEPS.SUCCESS  }
       content={<div className="terminals">
-        {
           <div>
             <br/>
-            <Divider horizontal inverted>Создать терминал</Divider>
-            <Segment stacked>
-              <Form>
-                <Form.Field>
-                  <label>
-                    <Icon name='mobile' color='orange'/>
-                    Логин терминала
-                  </label>
-                  <input placeholder='Логин терминала'
-                    // value={this.state.password}
-                    // onChange={this.onChangePassword.bind(this)}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <label >
-                    <Icon name='asterisk' color='orange'/>
-                    Пароль для терминала
-                  </label>
-                  <input placeholder='*****'
-                    // value={this.state.password}
-                    // onChange={this.onChangePassword.bind(this)}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Button type="button"
-                          color={'orange'}
-                          fluid
-                    // onClick={()=>this.props.onNext(1)}
-                  >
-                    Создать терминал
-                  </Button>
-                </Form.Field>
-              </Form>
-            </Segment>
+            {
+              this.state.step  !== STEPS.SUCCESS ? (<div>
+                <Divider horizontal inverted>Создать терминал</Divider>
+                <Segment stacked>
+                  <Form onSubmit={this.onSubmit.bind(this)}>
+                    <Form.Field>
+                      <label>
+                        <Icon name='mobile' color='orange'/>
+                        Логин терминала
+                      </label>
+                      <input placeholder='Логин терминала'
+                             value={this.state.login}
+                             name="login"
+                             onChange={this.UpdateField.bind(this)}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <label >
+                        <Icon name='asterisk' color='orange'/>
+                        Пароль для терминала
+                      </label>
+                      <input placeholder='*****'
+                             value={this.state.password}
+                             name="password"
+                             onChange={this.UpdateField.bind(this)}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Button type="submit"
+                              color={'orange'}
+                              fluid
+                      >
+                        Создать терминал
+                      </Button>
+                    </Form.Field>
+                  </Form>
+                </Segment>
+              </div>) : (<div>
+                  <Segment stacked>
+                    <Form className='formmmm'>
+                      <Form.Field>
+                        <label >Терминал успешно создан</label>
+                        <Link to="/terminals/manager">
+                          <Button type="button"
+                                  color={'orange'}
+                                  fluid
+                          >
+                            Перейти к списку терминалов
+                          </Button>
+                        </Link>
+                      </Form.Field>
+                    </Form>
+                  </Segment>
+                </div>
+              )
+            }
           </div>
-        }
       </div>}
     />;
   }
@@ -63,29 +126,38 @@ class TerminalsList extends Component {
   constructor(props){
     super(props);
     this.state = {
+      terminals: []
     };
+    this.loadTerminals();
   }
-  render() {
-    let terminals = [
-      {
-        id: 'Terminal1',
-        status: 'active',
-        address: 'ул. Ново-Садовая, 3, Самара'
-      },
-      // {
-      //   id: 'Terminal2',
-      //   status: 'deactivated',
-      //   address: 'ул. Ново-Садовая, 3, Самара'
-      // },
-      // {
-      //   id: 'Terminal3',
-      //   status: 'deactivated',
-      //   address: 'ул. Ново-Садовая, 3, Самара'
-      // }
-    ];
+  loadTerminals(){
+    fetch("http://192.168.43.88:8080/api/terminal", {method: "GET"})
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          this.setState({terminals: [
+            {
+              "id": "1",
+              "status": "active",
+              "address": "г. Самара, ул. Ново-Садовая, д.3"
+            }
+          ]});
+        }
+        else {
+          // this.setState({step: STEPS.ERROR});
+          alert('Ошибка загурзки терминалов');
+        }
+      })
+      .catch((message) => {
+        console.log(message);
+        alert(message);
+        // this.setState({step: STEPS.SUCCESS_FAKE});
+      });
+  }
+  render(){
     let terminalsList = (() => {
       return <div className="terminal-list">
-        {terminals.map((val)=>{
+        {this.state.terminals.map((val)=>{
           return <Segment stacked key={val.id}>
             <Form>
               <Form.Field>
@@ -140,6 +212,7 @@ class TerminalsList extends Component {
           </div>
         }
       </div>}
+      footer={true}
     />;
   }
 }

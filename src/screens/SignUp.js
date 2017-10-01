@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Screen.sass';
 import { Form, Segment, Button, Dropdown, Divider } from 'semantic-ui-react';
 import Screen from './Screen';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 // TODO Отправку формы
@@ -137,7 +137,7 @@ class Step3 extends Component{
     super(props);
   }
   render(){
-    return <Form>
+    return <Form onSubmit={this.props.onSubmit}>
         <Segment stacked>
         <Divider horizontal className="orange-color">Договор</Divider>
         <Form.Field>
@@ -191,10 +191,9 @@ class Step3 extends Component{
           </Button>
         </Form.Field>
         <Form.Field>
-          <Button type="button"
+          <Button type="submit"
                   fluid
                   color={'orange'}
-                  onClick={()=>this.props.onNext(4)}
           >Отправить заявку</Button>
         </Form.Field>
       </Segment>
@@ -228,38 +227,58 @@ class SignUp extends Component {
     super(props);
     this.state = {
       step: 1,
+      complete: false,
       // First step
-      itn: '',
-      name: '',
-      surname: '',
-      contactEmail: '',
-      contactPhone: '',
+      itn: '7706092528',
+      name: 'Герман',
+      surname: 'Севостьянов',
+      contactEmail: 'sevostyanovg.d@gmail.com',
+      contactPhone: '89118465234',
       // Two step
-      login: '',
-      password: '',
-      password2: '',
+      login: 'test',
+      password: 'test',
+      password2: 'test',
       // Three step
       methodConcluding: 1,
-      officeId: null
+      officeId: 1
     };
   }
   onSubmit(e){
     //TODO send request
     console.log('send request');
-    // $.ajax({
-    //   url: this.props.url,
-    //   dataType: 'json',
-    //   cache: false,
-    //   success: function(data) {
-    //     this.setState({data: data});
-    //   }.bind(this),
-    //   error: function(xhr, status, err) {
-    //     console.error(this.props.url, status, err.toString());
-    //   }.bind(this)
-    // });
     console.log(e);
+    let data = new FormData();
+    Object.keys(this.state).map((objectKey, index) => {
+      if(objectKey !== 'step' && objectKey !== 'complete'){
+        let value = this.state[objectKey];
+        console.log(value);
+        data.append([`${objectKey}`], value );
+      }
+    });
+    // fetch("http://192.168.43.88:8080/api/ok",
+    fetch("http://192.168.43.88:8080/customer/registration",
+      {
+        method: "POST",
+        body: data,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200){
+          console.log(res);
+          alert('Успешно!');
+          this.setState({ complete: true });
+          this.Next(4);
+        }
+        else{
+          // this.setState({ step: STEPS.ERROR, payload: payload });
+          alert('Ошибка регистрации');
+        }
+      })
+      .catch((message)=>{
+        console.log(message);
+        // this.setState({ step: STEPS.SUCCESS_FAKE, payload: payload });
+      });
     console.log(this.state);
-
   }
   UpdateField(e){
     let name = e.target.name;
@@ -310,6 +329,7 @@ class SignUp extends Component {
           onBack = {this.Next.bind(this)}
           onNext = {this.Next.bind(this)}
           onSubmit = {this.onSubmit.bind(this)}
+          complete = {this.state.complete}
         />;
       case 4:
         return <Step4/>;

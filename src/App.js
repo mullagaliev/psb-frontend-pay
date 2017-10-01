@@ -27,17 +27,6 @@ class App extends Component {
                   transform: `translateX(${styles.offset}%)`,
                 })}
               />
-              {/*<AnimatedRoute*/}
-                {/*path="/"*/}
-                {/*component={LoginMain}*/}
-                {/*atEnter={{ offset: 320 }}*/}
-                {/*atLeave={{ offset: -320 }}*/}
-                {/*atActive={{ offset: 0 }}*/}
-                {/*mapStyles={(styles) => ({*/}
-                  {/*transform: `translateX(${styles.offset}%)`,*/}
-                {/*})}*/}
-              {/*/>*/}
-              {/*<Route exact path='/' component={LoginMain} />*/}
               <Route path='/welcome' component={LoginMain} />
               {/*<Route path='/login' component={SignIn} />*/}
               <AnimatedRoute
@@ -76,6 +65,7 @@ class App extends Component {
                 })}
               />
               <Route path='/settings' component={Settings} />
+              <Route exact path='/' component={LoginMain} />
             </div>
           </Router>
       </div>

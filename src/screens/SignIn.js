@@ -33,6 +33,7 @@ class SignIn extends Component {
               <label>Логин</label>
               <input placeholder='Andrew'
                      value={this.state.login}
+                     name="login"
                      onChange={this.onChangeLogin.bind(this)}
               />
             </Form.Field>
@@ -41,6 +42,7 @@ class SignIn extends Component {
               <input placeholder='********'
                      type="password"
                      value={this.state.password}
+                     name="password"
                      onChange={this.onChangePassword.bind(this)}
               />
             </Form.Field>
