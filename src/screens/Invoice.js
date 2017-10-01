@@ -34,15 +34,16 @@ class Invoice extends Component {
     if(Number(this.state.total) > 0 ){
       // this.setState({ step: STEPS.LOADING},() => {
       //   setTimeout(() => {
-          this.setState({ step: STEPS.WAIT});
-          setTimeout(() => {
-            let payload = {
-              "to": "4276 6600 1590 4980",
-              "sum": this.state.total,
-              "token": "7081879F6C0200019F62060000000700009F630600000078F0009F640104563442353434333331393530303835303936395E202F5E323030363232313030303030303030303030303030303030303030303030309F650200E09F66020F1E9F6701049F6B135443319500850969D20062210000000000000F9F690F9F6A049F7E019F02065F2A029F1A029000"
-            };
-            this.onNfcReading(payload); // TODO remove it
-          }, 2000);
+          this.setState({ step: STEPS.WAIT });
+          window.gggg = this.onNfcReading.bind(this);
+          // setTimeout(() => {
+          //   let payload = {
+          //     "to": "4276 6600 1590 4980",
+          //     "sum": this.state.total,
+          //     "token": "7081879F6C0200019F62060000000700009F630600000078F0009F640104563442353434333331393530303835303936395E202F5E323030363232313030303030303030303030303030303030303030303030309F650200E09F66020F1E9F6701049F6B135443319500850969D20062210000000000000F9F690F9F6A049F7E019F02065F2A029F1A029000"
+          //   };
+          //   this.onNfcReading(payload); // TODO remove it
+          // }, 2000);
       //   }, 2000);
       // });
     }
