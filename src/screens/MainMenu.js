@@ -11,42 +11,42 @@ class MainMenu extends Component {
       active={ this.props.active }
       content={<div className="main-menu">
         <Grid>
+          {/*<Grid.Row>*/}
+            {/*<Grid.Column mobile={8} tablet={8} computer={8}>*/}
+              {/*<Link to={`/terminals/manager`}>*/}
+                {/*<Segment>*/}
+                  {/*<div className="main-menu-item">*/}
+                    {/*<div className="main-menu-item__icon">*/}
+                      {/*<Icon.Group size='large'>*/}
+                        {/*<Icon name='tablet' size='large' color="orange" />*/}
+                        {/*<Icon corner name='add' color="blue"/>*/}
+                      {/*</Icon.Group>*/}
+                    {/*</div>*/}
+                    {/*<div className="main-menu-item__title">*/}
+                      {/*Управление терминалами*/}
+                    {/*</div>*/}
+                  {/*</div>*/}
+                {/*</Segment>*/}
+              {/*</Link>*/}
+            {/*</Grid.Column>*/}
+            {/*<Grid.Column mobile={8} tablet={8} computer={8}>*/}
+              {/*<Segment>*/}
+                {/*<div className="main-menu-item">*/}
+                  {/*<div className="main-menu-item__icon">*/}
+                    {/*<Icon.Group size='large'>*/}
+                      {/*<Icon name='archive' size='large' color="blue" />*/}
+                      {/*<Icon corner name='history' color="orange"/>*/}
+                    {/*</Icon.Group>*/}
+                  {/*</div>*/}
+                  {/*<div className="main-menu-item__title">*/}
+                    {/*История транзакций*/}
+                  {/*</div>*/}
+                {/*</div>*/}
+              {/*</Segment>*/}
+            {/*</Grid.Column>*/}
+          {/*</Grid.Row>*/}
           <Grid.Row>
-            <Grid.Column mobile={8} tablet={8} computer={8}>
-              <Link to={`/terminals/manager`}>
-                <Segment>
-                  <div className="main-menu-item">
-                    <div className="main-menu-item__icon">
-                      <Icon.Group size='large'>
-                        <Icon name='tablet' size='large' color="orange" />
-                        <Icon corner name='add' color="blue"/>
-                      </Icon.Group>
-                    </div>
-                    <div className="main-menu-item__title">
-                      Управление терминалами
-                    </div>
-                  </div>
-                </Segment>
-              </Link>
-            </Grid.Column>
-            <Grid.Column mobile={8} tablet={8} computer={8}>
-              <Segment>
-                <div className="main-menu-item">
-                  <div className="main-menu-item__icon">
-                    <Icon.Group size='large'>
-                      <Icon name='archive' size='large' color="blue" />
-                      <Icon corner name='history' color="orange"/>
-                    </Icon.Group>
-                  </div>
-                  <div className="main-menu-item__title">
-                    История транзакций
-                  </div>
-                </div>
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column mobile={8} tablet={8} computer={8}>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
               <Link to={`/invoice/create`}>
                 <Segment>
                   <div className="main-menu-item">
@@ -63,7 +63,9 @@ class MainMenu extends Component {
                 </Segment>
               </Link>
             </Grid.Column>
-            <Grid.Column mobile={8} tablet={8} computer={8}>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
               <Segment>
                 <div className="main-menu-item">
                   <div className="main-menu-item__icon">

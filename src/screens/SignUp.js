@@ -265,7 +265,7 @@ class SignUp extends Component {
         console.log(res);
         if (res.status === 200){
           console.log(res);
-          alert('Успешно!');
+          // alert('Успешно!');
           this.setState({ complete: true });
           this.Next(4);
         }
