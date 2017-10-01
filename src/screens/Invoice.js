@@ -120,7 +120,7 @@ class Invoice extends Component {
               <Form.Field>
                 <label>Поднесите устройство для оплаты </label>
               </Form.Field>
-              <Divider horizontal className="orange-color"> { this.state.total } ₽</Divider>
+              <Divider horizontal className="orange-color"><h1>{ this.state.total } ₽</h1>  </Divider>
             </Segment>
           ) : null
         }

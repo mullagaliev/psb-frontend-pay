@@ -62,13 +62,13 @@ class AddTerminal extends Component {
             <br/>
             {
               this.state.step  !== STEPS.SUCCESS ? (<div>
-                <Divider horizontal inverted>Создать терминал</Divider>
+                {/*<Divider horizontal inverted>Создать терминал</Divider>*/}
                 <Segment stacked>
                   <Form onSubmit={this.onSubmit.bind(this)}>
                     <Form.Field>
                       <label>
                         <Icon name='mobile' color='orange'/>
-                        Логин терминала
+                        Логин для терминала
                       </label>
                       <input placeholder='Логин терминала'
                              value={this.state.login}
@@ -93,7 +93,7 @@ class AddTerminal extends Component {
                               color={'orange'}
                               fluid
                       >
-                        Создать терминал
+                        Создать учетную запись
                       </Button>
                     </Form.Field>
                   </Form>
@@ -102,7 +102,7 @@ class AddTerminal extends Component {
                   <Segment stacked>
                     <Form className='formmmm'>
                       <Form.Field>
-                        <label >Терминал успешно создан</label>
+                        <label >Учетная запись созадана</label>
                         <Link to="/terminals/manager">
                           <Button type="button"
                                   color={'orange'}

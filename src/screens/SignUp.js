@@ -13,7 +13,7 @@ class Step1 extends Component{
   render(){
     return <Form className='form-sign-up'>
       <Segment stacked>
-        <Divider horizontal className="orange-color">Регистрация организации</Divider>
+        {/*<Divider horizontal className="orange-color">Регистрация организации</Divider>*/}
         <Form.Field>
           <label>ИНН</label>
           <input placeholder='0000000000'
@@ -39,14 +39,14 @@ class Step1 extends Component{
                  onChange={(e)=>{this.props.onUpdateField(e)} }
           />
         </Form.Field>
-        <Form.Field>
-          <label>Email</label>
-          <input placeholder='Email'
-                 name={'contactEmail'}
-                 value={this.props.contactEmail}
-                 onChange={(e)=>{this.props.onUpdateField(e)} }
-          />
-        </Form.Field>
+        {/*<Form.Field>*/}
+          {/*<label>Email</label>*/}
+          {/*<input placeholder='Email'*/}
+                 {/*name={'contactEmail'}*/}
+                 {/*value={this.props.contactEmail}*/}
+                 {/*onChange={(e)=>{this.props.onUpdateField(e)} }*/}
+          {/*/>*/}
+        {/*</Form.Field>*/}
         <Form.Field>
           <label>Телефон</label>
           <input placeholder='+7(999)999-99-99'
@@ -99,14 +99,14 @@ class Step2 extends Component{
                  onChange={(e)=>{this.props.onUpdateField(e)} }
           />
         </Form.Field>
-        <Form.Field>
-          <Button type="button"
-                  color={'blue'}
-                  fluid
-                  onClick={()=>this.props.onNext(1)}>
-            Назад
-          </Button>
-        </Form.Field>
+        {/*<Form.Field>*/}
+          {/*<Button type="button"*/}
+                  {/*color={'blue'}*/}
+                  {/*fluid*/}
+                  {/*onClick={()=>this.props.onNext(1)}>*/}
+            {/*Назад*/}
+          {/*</Button>*/}
+        {/*</Form.Field>*/}
         <Form.Field>
           <Button type="button"
                   color={'orange'}
@@ -183,13 +183,23 @@ class Step3 extends Component{
           </Form.Field>
         ) : null }
         <Form.Field>
-          <Button type="button"
-                  color={'blue'}
-                  fluid
-                  onClick={()=>this.props.onBack(2)}>
-            Назад
-          </Button>
+          <label>Количество терминалов</label>
+          <input placeholder='2'
+                 name={'countTerm'}
+                 type="number"
+                 value={this.props.countTerm}
+                 onChange={(e)=>{this.props.onUpdateField(e)} }
+          />
         </Form.Field>
+        {/*<Form.Field>*/}
+          {/*<Button type="button"*/}
+                  {/*color={'blue'}*/}
+                  {/*fluid*/}
+                  {/*onClick={()=>this.props.onBack(2)}>*/}
+            {/*Назад*/}
+          {/*</Button>*/}
+        {/*</Form.Field>*/}
+
         <Form.Field>
           <Button type="submit"
                   fluid
@@ -208,13 +218,13 @@ class Step4 extends Component{
   render(){
     return <Form className='align-center-wh'>
       <Segment stacked>
-        <Divider horizontal className="orange-color">Аккаунт успешно создан</Divider>
+        <Divider horizontal className="orange-color">Заявка отправлена</Divider>
         <Form.Field>
           <Link to={`/terminals/create`}>
             <Button type="button"
                     fluid
                     color={'orange'}
-            >Перейти к созданию первого терминала</Button>
+            >Создание учётной записи <br/> для терминала </Button>
           </Link>
         </Form.Field>
       </Segment>
@@ -240,7 +250,8 @@ class SignUp extends Component {
       password2: 'test',
       // Three step
       methodConcluding: 1,
-      officeId: 1
+      officeId: 1,
+      countTerm: 1
     };
   }
   onSubmit(e){
@@ -325,6 +336,7 @@ class SignUp extends Component {
         return <Step3
           methodConcluding = {this.state.methodConcluding}
           officeId = {this.state.officeId}
+          countTerm = {this.state.countTerm}
           onUpdateField = {this.UpdateField.bind(this)}
           onBack = {this.Next.bind(this)}
           onNext = {this.Next.bind(this)}

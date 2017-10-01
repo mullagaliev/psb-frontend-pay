@@ -15,7 +15,7 @@ class LoginMain extends Component {
           </Link>
           <Divider horizontal>или</Divider>
           <Link to={`/reg`}>
-            <Button fluid color={'blue'}>Создать аккаунт</Button>
+            <Button fluid color={'blue'}>Заявка на эквайринг</Button>
           </Link>
         </Segment>
       </div>}
